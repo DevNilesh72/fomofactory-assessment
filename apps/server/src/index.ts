@@ -1,6 +1,9 @@
+import { commonValue } from "@repo/common/config";
 import express from "express";
 
 const app = express()
+
+console.log(commonValue)
 
 app.get("/", (req, res) => {
     res.json({
