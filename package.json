@@ -1,5 +1,5 @@
 {
-  "name": "FomoFactory-Assessment",
+  "name": "fomofactory-assessment",
   "private": true,
   "scripts": {
     "build": "turbo build",
