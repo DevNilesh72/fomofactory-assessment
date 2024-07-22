@@ -7,7 +7,7 @@ export type StockPriceState = {
 };
 
 const initialState: StockPriceState = {
-  name: '',
+  name: 'bitcoin',
   stockPrice: [],
 };
 
@@ -15,7 +15,7 @@ export const stockPriceSlice = createSlice({
   name: 'stockPrice',
   initialState,
   reducers: {
-    setName: (state, { payload }) => {
+    setStockName: (state, { payload }) => {
       state.name = payload;
     },
     updateStock: (state, { payload }) => {
@@ -25,6 +25,6 @@ export const stockPriceSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setName, updateStock } = stockPriceSlice.actions
+export const { setStockName, updateStock } = stockPriceSlice.actions
 
 export default stockPriceSlice.reducer;
