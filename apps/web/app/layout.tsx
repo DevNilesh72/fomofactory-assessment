@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import dynamic from 'next/dynamic'
-const StoreProvider = dynamic(() => import('./StoreProvider'), { ssr: false })
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,11 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <StoreProvider>
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>
-          {children}
-        </body>
-      </StoreProvider>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { stockPriceDTO } from "@repo/common/config"
+import { stockPriceDTO, StocksList } from "@repo/common/config"
 
 export type StockPriceState = {
   name: string;
@@ -7,7 +7,7 @@ export type StockPriceState = {
 };
 
 const initialState: StockPriceState = {
-  name: 'bitcoin',
+  name: StocksList[0] || '',
   stockPrice: [],
 };
 
@@ -19,7 +19,7 @@ export const stockPriceSlice = createSlice({
       state.name = payload;
     },
     updateStock: (state, { payload }) => {
-      state.stockPrice = [payload, ...state.stockPrice]
+      state.stockPrice = payload
     }
   },
 })

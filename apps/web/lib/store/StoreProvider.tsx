@@ -1,9 +1,9 @@
 'use client'
 import { useRef } from 'react'
 import { Provider } from 'react-redux'
-import { makeStore, AppStore } from '../lib/store/store'
-import { setStockName } from "../lib/store/stockPriceSlice"
-import { useLocalStorage } from "../lib/hooks/useStorage"
+import { useLocalStorage } from "../hooks/useStorage";
+import { AppStore, makeStore } from "./store";
+import { setStockName } from "./stockPriceSlice";
 
 export default function StoreProvider({
   children
