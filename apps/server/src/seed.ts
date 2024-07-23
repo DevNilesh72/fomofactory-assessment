@@ -6,9 +6,9 @@ import cron from 'node-cron';
 const prisma = new PrismaClient();
 
 async function fetchData() {
-  const ids = Object.keys(StocksList).reduce(
+  const ids = StocksList.reduce(
     (prev, curr) =>
-      prev ? `${prev},${StocksList[curr].alis}` : StocksList[curr].alis,
+      prev ? `${prev},${curr}` : curr,
     ""
   );
 

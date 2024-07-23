@@ -5,25 +5,10 @@ export interface stockPriceDTO {
     created_at: string;
 }
 
-export const StocksList = {
-    bitcoin: {
-        name: "Bitcoin",
-        alis: "bitcoin"
-    },
-    ethereum: {
-        name: "Ethereum",
-        alis: "ethereum"
-    },
-    solana: {
-        name: "Solana",
-        alis: "solana"
-    },
-    tether: {
-        name: "Tether",
-        alis: "tether"
-    },
-    dogecoin: {
-        name: "Dogecoin",
-        alis: "dogecoin"
-    },
-}
+export const StocksList = [
+    "bitcoin"
+    , "ethereum"
+    , "solana"
+    , "tether"
+    , "dogecoin"
+]

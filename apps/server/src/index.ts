@@ -1,12 +1,16 @@
 import express from "express";
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
+import cors from 'cors';
 
 dotenv.config();
 const prisma = new PrismaClient()
 
 const app = express()
 app.use(express.json());
+app.use(cors({
+    origin: [ 'http://localhost:3000' ]
+}))
 
 app.get("/stocks/list/:coin", async (req, res) => {
     try {
@@ -20,7 +24,7 @@ app.get("/stocks/list/:coin", async (req, res) => {
             },
         })
         res.json({
-            res: prices
+            result: prices
         });
     } catch (error) {
         res.status(500).json({
@@ -30,5 +34,5 @@ app.get("/stocks/list/:coin", async (req, res) => {
 })
 
 app.listen(3001, () => {
-    console.log("Server started at https://localhost:3001")
+    console.log("Server started at http://localhost:3001")
 })
