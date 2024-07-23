@@ -6,7 +6,7 @@ import { StocksList } from "@repo/common/config";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks/redux-hooks";
 import { useLocalStorage } from "../../lib/hooks/useStorage";
 import { setStockName, updateStock } from "../../lib/store/stockPriceSlice";
-
+export const dynamic = 'force-dynamic'
 export default function StockPriceList() {
   const stockPrice = useAppSelector((state) => state.stockPrice.stockPrice);
   const stockPriceName = useAppSelector((state) => state.stockPrice.name);

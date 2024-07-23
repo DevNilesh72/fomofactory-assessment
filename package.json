@@ -15,9 +15,13 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "npm@10.5.2",
+  "packageManager": "npm@9.8.1",
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.6",
+    "react-redux": "^9.1.2"
+  }
 }
