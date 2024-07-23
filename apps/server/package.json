@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "prisma generate && tsc -b",
-    "dev": "node dist/index.js"
+    "dev": "concurrently \"npm run seed\" \"npm run listen\"",
+    "seed": "node dist/seed.js",
+    "listen": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -21,5 +23,9 @@
     "express": "^4.19.2",
     "node-cron": "^3.0.3",
     "prisma": "^5.17.0"
+  },
+  "devDependencies": {
+    "@types/node-cron": "^3.0.11",
+    "concurrently": "^8.2.2"
   }
 }
