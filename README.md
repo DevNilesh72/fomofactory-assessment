@@ -20,7 +20,7 @@ Your task is to create a mini-website to collect and display real-time price dat
 
 ## Specs used to complete assessment
 
-- Turborepo: to orchrestrate frontend and backend development
+- Turborepo: to orchestrate frontend and backend development
 - Next Js 14: for frontend (folder: apps/web)
 - Express js: for backendend (folder: apps/server)
 - DB: Mongo DB
