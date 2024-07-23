@@ -33,6 +33,7 @@ after cloning project:
 - perform following commands in cmd:
 ```shel
 npm install
+npm run build
 npm run dev
 ```
 
