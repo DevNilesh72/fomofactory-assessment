@@ -6,6 +6,7 @@
   "scripts": {
     "build": "prisma generate && tsc -b",
     "dev": "concurrently \"npm run seed\" \"npm run server\"",
+    "start": "concurrently \"npm run seed\" \"npm run server\"",
     "seed": "node dist/seed.js",
     "server": "node dist/index.js"
   },

@@ -31,10 +31,10 @@ Your task is to create a mini-website to collect and display real-time price dat
 after cloning project:
 - setup env variable of DATABASE_URL to Mongo DB
 - perform following commands in cmd:
-```shel
+```shell
 npm install
 npm run build
-npm run dev
+npm run start
 ```
 
 - Backend running on `http://localhost:3001`
