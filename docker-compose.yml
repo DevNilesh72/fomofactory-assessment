@@ -1,0 +1,52 @@
+version: '3.1'
+services:
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - app_network
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: ./apps/server/Dockerfile
+    environment:
+      DATABASE_URL: 'mongodb://localhost:27018/fomofactory'
+    depends_on:
+      - mongo
+    restart: always
+    ports:
+      - 3001:3001
+    networks:
+      - app_network
+  mongo:
+    container_name: mongo
+    build:
+      context: ./apps/server/mongodb_rs
+      args:
+        MONGO_VERSION: 4
+    environment:
+      MONGO_REPLICA_HOST: localhost
+      MONGO_REPLICA_PORT: 27018
+      MONGO_COMMAND: 'mongo'
+    ports:
+      - '27018:27018'
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'mongo', 'admin', '--port', '27018', '--eval', "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 2s
+      retries: 20
+    networks:
+      - app_network
+
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+networks:
+  app_network:
+    external: true
