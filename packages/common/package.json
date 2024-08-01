@@ -10,6 +10,9 @@
     "build": "tsc -b",
     "lint": "eslint . --max-warnings 0"
   },
+  "dependencies": {
+    "@repo/typescript-config": "*"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

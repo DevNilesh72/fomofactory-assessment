@@ -9,7 +9,7 @@ const prisma = new PrismaClient()
 const app = express()
 app.use(express.json());
 app.use(cors({
-    origin: [ 'http://localhost:3000' ]
+    origin: ['http://localhost:3000']
 }))
 
 app.get("/stocks/list/:coin", async (req, res) => {

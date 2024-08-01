@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { PrismaClient } from "@prisma/client";
 import { StocksList } from "@repo/common/config";
-import cron from 'node-cron';
 
 const prisma = new PrismaClient();
 
@@ -37,15 +36,13 @@ export async function main() {
   }
 }
 
-cron.schedule('* * * * *', () => {
-  main()
-    .catch(async (e) => {
-      console.error(e);
-      process.exit(1);
-    })
-    .finally(async () => {
-      await prisma.$disconnect();
-    });
-});
+main()
+  .catch(async (e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
 
 

@@ -11,13 +11,12 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 RUN npm install -g turbo
 COPY . .
-RUN turbo prune api --docker
+RUN turbo prune server --docker
 
 # Add lockfile and package.json's of isolated subworkspace
 FROM base AS installer
 RUN apk update
-RUN apk add --no-cache libc6-compat
-# RUN apt-get install -y cron
+RUN apk add --no-cache libc6-compat bash busybox-suid openrc
 WORKDIR /app
 
 # First install dependencies (as they change less often)
@@ -37,21 +36,15 @@ COPY turbo.json turbo.json
 # ARG TURBO_TOKEN
 # ENV TURBO_TOKEN=$TURBO_TOKEN
 
-RUN npm run build --filter=api...
+RUN npm run build --filter=server...
 
 FROM base AS runner
 WORKDIR /app
 
-# Add crontab file in the cron directory
-# COPY crontab /etc/cron.d/simple-cron
-# Give execution rights on the cron job
-# RUN chmod 0644 /etc/cron.d/simple-cron
-# Apply cron job
-# RUN crontab /etc/cron.d/simple-cron
+# Add the cron job
+RUN echo "* * * * * node /app/apps/server/dist/seed.js >> /app/cron.log 2>&1" > /etc/crontabs/root
 # Create the log file to be able to run tail
-# RUN touch /var/log/cron.log
-# Run the command on container startup
-# RUN cron
+RUN touch /app/cron.log
 
 # Don't run production as root
 RUN addgroup --system --gid 1001 expressjs
@@ -59,4 +52,5 @@ RUN adduser --system --uid 1001 expressjs
 USER expressjs
 COPY --from=installer /app .
 
-CMD node apps/api/dist/index.js
+# Start cron and the application
+CMD crond && node apps/server/dist/index.js
