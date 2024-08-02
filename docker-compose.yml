@@ -39,19 +39,13 @@ services:
     ports:
       - '27018:27018'
     restart: unless-stopped
-    healthcheck:
-      test: ['CMD', 'mongo', 'admin', '--port', '27018', '--eval', "db.adminCommand('ping').ok"]
-      interval: 5s
-      timeout: 2s
-      retries: 20
     networks:
       - app_network
     volumes:
       - mongodb_data:/data/db
-
-# Define a network, which allows containers to communicate
-# with each other, by using their container name as a hostname
 networks:
   app_network:
+    driver: bridge
 volumes:
   mongodb_data:
+    driver: local
